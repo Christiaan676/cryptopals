@@ -1,0 +1,12 @@
+[package]
+name = "set_1_6_break_repeating-key_XOR"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+crypto-tools.workspace = true
+
+base64.workspace = true
+hamming.workspace = true
