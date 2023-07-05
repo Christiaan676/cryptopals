@@ -1,0 +1,28 @@
+[source.mirror]
+registry = "git://cargo-cacheracc.intranet.technolution.nl:9418/cratesio"
+
+[source.crates-io]
+replace-with = "mirror"
+
+[net]
+git-fetch-with-cli = true
+
+[target.'cfg(all())']
+rustflags = [
+    # Disallow unsafe code
+    "-Dunsafe_code",
+    # Enable extra clippy lints for available lints  see: https://rust-lang.github.io/rust-clippy/master/
+    # -A -> allow(..) Global suppress the lint, use in cases of false positives
+    # -D -> deny(..) Enables the lint and offers the option to selectivly disable the lint by using #[allow(..)]
+    # -F -> forbid(..) Forces the lint. NOTE: Disallows using #[allow(..)]
+    # Forbids are not compatible with the Clap derive macros.
+    "-Dclippy::dbg_macro",
+    "-Dclippy::unwrap_used",
+    "-Dclippy::macro_use_imports",
+    #
+    # Everything should be documented, even private stuff.
+    "-Wclippy::missing_docs_in_private_items",
+    #
+    # Should never be used in production code.
+    "-Dclippy::todo",
+]

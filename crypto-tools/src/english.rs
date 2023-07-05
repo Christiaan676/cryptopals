@@ -5,10 +5,10 @@ use std::collections::HashMap;
 pub fn is_english(input: &[u8]) -> f64 {
     let mut text_distribution = HashMap::new();
     for c in input {
-        let c = if c.is_ascii_alphanumeric() || *c == b'*' || *c == b' ' {
+        let c = if c.is_ascii_alphabetic() || FREQUENCY_TABLE_ENG.contains_key(&c) {
             c.to_ascii_lowercase()
         } else {
-            b'*'
+            NULL_CHAR
         };
 
         text_distribution
@@ -17,12 +17,16 @@ pub fn is_english(input: &[u8]) -> f64 {
             .or_insert(1);
     }
 
-    let g = g_test(&text_distribution, &frequency_table_eng);
-    p_value(g, frequency_table_eng.len() - 1)
+    let g = g_test(&text_distribution, &FREQUENCY_TABLE_ENG);
+    //let g = chi_square(&text_distribution, &frequency_table_eng);
+
+    p_value(g, FREQUENCY_TABLE_ENG.len() - 1)
 }
 
+static NULL_CHAR: u8 = 0;
+
 /// https://pi.math.cornell.edu/~mec/2003-2004/cryptography/subs/frequencies.html
-static frequency_table_eng: phf::Map<u8, f64> = phf_map! {
+static FREQUENCY_TABLE_ENG: phf::Map<u8, f64> = phf_map! {
     b'a' => 0.082,
     b'b' => 0.015,
     b'c' => 0.028,
@@ -51,7 +55,11 @@ static frequency_table_eng: phf::Map<u8, f64> = phf_map! {
     b'z' => 0.0074,
     // Added but not rebalanced, so the total will not loger add up to 1
     b' ' => 0.12,
-    b'*' => 0.01
+    b'\0' => 0.001,
+    //b'#' => 0.074,
+    b'\'' => 0.074,
+    b'\n' => 0.0074,
+    b'-' => 0.0074,
 };
 
 /// https://en.wikipedia.org/wiki/G-test
@@ -66,7 +74,7 @@ fn g_test(observed: &HashMap<u8, u32>, expected: &phf::Map<u8, f64>) -> f64 {
 }
 
 /// chi square test
-fn chi_square(observed: &HashMap<u8, u32>, expected: &phf::Map<u8, f64>) -> f64 {
+fn _chi_square(observed: &HashMap<u8, u32>, expected: &phf::Map<u8, f64>) -> f64 {
     let count = observed.values().map(|v| *v as u32).sum::<u32>() as f64;
 
     let chi_square_sum = |(i, e): (_, &f64)| {

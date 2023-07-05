@@ -18,6 +18,6 @@ fn main() {
         .unwrap();
 
     let text = String::from_utf8_lossy(&text);
-    // 88:Cooking MC's like a pound of bacon p: 0.49548566406849426
+    // 88:Cooking MC's like a pound of bacon p: 0.8385329763799043
     println!("{key}:{text} p: {p_value}");
 }

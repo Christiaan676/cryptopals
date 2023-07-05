@@ -3,6 +3,22 @@
 version = 3
 
 [[package]]
+name = "Set1_3OneXor"
+version = "0.1.0"
+dependencies = [
+ "crypto-tools",
+ "hex",
+ "hex-literal",
+]
+
+[[package]]
+name = "Set1_5RepeatingKeyXOR"
+version = "0.1.0"
+dependencies = [
+ "hex-literal",
+]
+
+[[package]]
 name = "adler"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1441,23 +1457,6 @@ dependencies = [
  "crypto-tools",
  "hex-literal",
  "lingua",
-]
-
-[[package]]
-name = "set_1_3_one_xor"
-version = "0.1.0"
-dependencies = [
- "crypto-tools",
- "hex",
- "hex-literal",
- "lingua",
-]
-
-[[package]]
-name = "set_1_5_repeating-key_XOR"
-version = "0.1.0"
-dependencies = [
- "hex-literal",
 ]
 
 [[package]]
