@@ -1,14 +1,11 @@
 [workspace]
 
-members = [
-    "crypto-tools",
-    "set1/*",
-]
+members = ["crypto-tools", "set1/*", "set2/*"]
 
 exclude = []
 
 [workspace.dependencies]
-crypto-tools = {path = "crypto-tools"}
+crypto-tools = { path = "crypto-tools" }
 
 statrs = "0.16.0"
 phf = "0.11.1"
@@ -20,3 +17,6 @@ hamming = "0.1.3"
 
 base64 = "0.21.2"
 
+aes = "0.8.3"
+
+rand = { version = "0.8.5", features = ["min_const_gen"] }

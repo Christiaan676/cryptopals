@@ -1,5 +1,5 @@
 [package]
-name = "set_1_2_xor_ciper"
+name = "set_1_7_aes_in_ecb"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,5 +7,4 @@ edition = "2021"
 
 [dependencies]
 crypto-tools.workspace = true
-
-hex-literal.workspace = true
+base64.workspace = true

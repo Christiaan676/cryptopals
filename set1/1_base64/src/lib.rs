@@ -1,8 +1,4 @@
-fn main() {
-    println!("Hello, world!");
-}
-
-fn to_base64(input: &[u8]) -> String {
+pub fn to_base64(input: &[u8]) -> String {
     input.chunks(3).map(to_base64_chars).collect()
 }
 
@@ -42,10 +38,10 @@ fn bits_18(input: [u8; 2]) -> String {
     result
 }
 
-const alphabet: &[u8; 64] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const ALPHABET: &[u8; 64] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 fn to_base64_char(input: u8) -> char {
     let input = input & 0x3F;
-    char::from(alphabet[input as usize])
+    char::from(ALPHABET[input as usize])
 }
 
 #[cfg(test)]

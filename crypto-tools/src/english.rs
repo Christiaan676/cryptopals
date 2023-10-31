@@ -74,7 +74,7 @@ fn g_test(observed: &HashMap<u8, u32>, expected: &phf::Map<u8, f64>) -> f64 {
 }
 
 /// chi square test
-fn _chi_square(observed: &HashMap<u8, u32>, expected: &phf::Map<u8, f64>) -> f64 {
+fn chi_square(observed: &HashMap<u8, u32>, expected: &phf::Map<u8, f64>) -> f64 {
     let count = observed.values().map(|v| *v as u32).sum::<u32>() as f64;
 
     let chi_square_sum = |(i, e): (_, &f64)| {

@@ -1,9 +1,9 @@
 [package]
-name = "Set1_5RepeatingKeyXOR"
+name = "set_2_10_cbc_mode"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-hex-literal.workspace = true
+crypto-tools.workspace = true

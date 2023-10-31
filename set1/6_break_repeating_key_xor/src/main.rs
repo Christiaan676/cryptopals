@@ -37,7 +37,7 @@ fn main() {
                         .chunks(key_size)
                         .filter_map(|chunk| chunk.get(n).cloned())
                         .collect::<Vec<_>>();
-                    let (key, p_value, text) = hack_single_xor(&cyphertext);
+                    let (key, _p_value, _text) = hack_single_xor(&cyphertext);
                     key
                 })
                 .collect::<Vec<_>>();
